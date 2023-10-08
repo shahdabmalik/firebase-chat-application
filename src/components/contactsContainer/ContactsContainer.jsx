@@ -54,8 +54,8 @@ const ContactsContainer = () => {
     }, [user.uid, dispatch])
 
     return (
-        <div className={"bg-slate-100 sm:w-1/3 lg:w-1/4 shadow-inner flex flex-col transition-all " + (inChat ? " w-0 " : " w-full ")}>
-            <div className="mb-5 flex-grow w-full" >
+        <div className={"bg-slate-100 sm:w-1/3 lg:w-1/4 shadow-inner flex flex-col transition-all overflow-hidden " + (inChat ? " w-0  " : " w-full ")}>
+            <div className="mb-5 flex-grow w-full overflow-hidden" >
                 <div className="py-2 px-2 h-12 border-b flex justify-between items-center" >
                     <h3 className=" text-xl font-semibold  text-blue-700 " >Contacts</h3>
                     <AddFriends />

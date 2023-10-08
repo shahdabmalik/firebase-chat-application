@@ -13,13 +13,13 @@ const Contact = ({ user, lastMessage, time }) => {
     const date = new Date(time * 1000).toLocaleDateString()
 
     return (
-        <div className={'w-full flex items-center gap-3 p-2 border-b border-b-slate-300 cursor-pointer' + (user?.uid === selectedContact?.uid ? ' border-l-2 border-blue-500 shadow-md bg-white ' : ' hover:bg-slate-50 ')} onClick={handleNormalClick} >
-            <div className='w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold border-slate-900' >{user?.name.split('')[0].toUpperCase()}</div>
-            <div className="flex-grow" >
-                <p className="font-bold" >{user?.name}</p>
-                {lastMessage && <p className="text-sm text-slate-500" >{lastMessage}</p>}
+        <div className={'w-full h-16 overflow-hidden flex items-center gap-3 p-2 border-b border-b-slate-300 cursor-pointer relative' + (user?.uid === selectedContact?.uid ? ' border-l-2 border-blue-500 shadow-md bg-white ' : ' hover:bg-slate-50 ')} onClick={handleNormalClick} >
+            <div className='w-10 h-10 aspect-square bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold border-slate-900' >{user?.name.split('')[0].toUpperCase()}</div>
+            <div className=" overflow-hidden " >
+                <p className="font-bold w-96" >{user?.name}</p>
+                {lastMessage && <p className="text-sm w-96 text-slate-500" >{lastMessage}</p>}
             </div>
-            <div className=" self-start text-xs text-slate-500">{date}</div>
+            <div className=" absolute top-2 right-2 text-xs text-slate-500">{date}</div>
         </div>
     )
 }
