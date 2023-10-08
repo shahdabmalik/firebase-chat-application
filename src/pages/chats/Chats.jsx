@@ -6,7 +6,7 @@ import NoContactSelected from "../../components/noContactSelected/NoContactSelec
 
 const Chats = () => {
 
-    useRedirectUser("/")
+    useRedirectUser()
     const { selectedContact } = useSelector(state => state.chat)
 
     return (

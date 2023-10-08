@@ -6,7 +6,7 @@ import toast from "react-hot-toast"
 import { useDispatch } from "react-redux"
 import { SET_USER } from "../redux/features/authSlice"
 
-const useRedirectUser = (path) => {
+const useRedirectUser = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -14,8 +14,8 @@ const useRedirectUser = (path) => {
         const checkUser = async () => {
             onAuthStateChanged(auth, (user) => {
                 if (!user) {
+                    navigate("/")
                     toast.error("Request Unauthorized, Please Login.")
-                    return navigate(path)
                 } else {
                     let loggedInUser = {
                         uid: user.uid,
@@ -28,7 +28,7 @@ const useRedirectUser = (path) => {
             })
         }
         checkUser()
-    }, [navigate, dispatch, path])
+    }, [navigate, dispatch])
 }
 
 

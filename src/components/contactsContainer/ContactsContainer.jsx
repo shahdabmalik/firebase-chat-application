@@ -6,8 +6,9 @@ import { useEffect } from "react"
 import { doc, onSnapshot } from "firebase/firestore"
 import { useDispatch, useSelector } from "react-redux"
 import Contact from "../contact/Contact"
-import { SET_CONTACTS } from "../../redux/features/chatSlice"
+import { SET_CHATS, SET_CONTACTS, SET_SELECTED_CONTACT } from "../../redux/features/chatSlice"
 import AddFriends from "../addFriends/AddFriends"
+import { SET_USER } from "../../redux/features/authSlice"
 
 const ContactsContainer = () => {
 
@@ -20,8 +21,12 @@ const ContactsContainer = () => {
 
     const signout = async () => {
         try {
+            navigate()
+            dispatch(SET_CONTACTS([]))
+            dispatch(SET_USER({}))
+            dispatch(SET_SELECTED_CONTACT({}))
+            dispatch(SET_CHATS([]))
             await signOut(auth)
-            navigate("/")
         } catch (error) {
             console.log(error);
             toast.error("Error signing out.")
@@ -33,7 +38,6 @@ const ContactsContainer = () => {
             const unsub = onSnapshot(doc(db, "userContacts", user.uid), (doc) => {
 
                 const contactsData = Object.entries(doc.data())
-                console.log(contactsData);
                 const sortedContacts = [...contactsData];
                 sortedContacts.sort((a, b) => {
                     const dateA = a[1].date.toMillis(); // Convert Firestore Timestamp to milliseconds

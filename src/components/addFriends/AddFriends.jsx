@@ -48,7 +48,6 @@ const AddFriends = () => {
         }
 
     }
-    console.log(users);
 
     const handleSearchClick = async (user) => {
         // check whether chats availabe
